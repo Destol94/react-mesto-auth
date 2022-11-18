@@ -1,0 +1,13 @@
+.popup__info-tool-tip_res-text {
+  margin: 0;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+@media screen and (max-width: 800px) {
+  .popup__info-tool-tip_res-text {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
