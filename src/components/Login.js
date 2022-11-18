@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { Redirect } from 'react-router-dom';
+import AuthForm from "./AuthForm";
 
 function Login({ loggedIn, onLogin }) {
   const [formData, setFormData] = useState({
@@ -23,12 +24,7 @@ function Login({ loggedIn, onLogin }) {
     return <Redirect to="/" />
   }
   return (
-    <form className="sign-form" onSubmit={submitForm} name="formLogin">
-      <h2 className="sign-form__title">Вход</h2>
-      <input className="sign-form__input sign-form__email" placeholder="Email" name="email" required value={formData.email} onChange={handleInputChange} />
-      <input type="password" className="sign-form__input sign-form__pass" placeholder="Пароль" name="password" required value={formData.password} onChange={handleInputChange} />
-      <button className="sign-form__button">Войти</button>
-    </form>
+    <AuthForm onSubmit={submitForm} name="formLogin" titleForm="Вход" formData={formData} handleInputChange= {handleInputChange} textButton="Войти" />
   )
 }
 export default Login;

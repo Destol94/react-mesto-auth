@@ -1,8 +1,7 @@
-import { useRef, useState } from "react";
+import {  useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup(props) {
-
   const [name, setName] = useState('');
   function handleChangeName(e) {
     setName(e.target.value);
@@ -11,7 +10,6 @@ function AddPlacePopup(props) {
   function handleChangeUrl(e) {
     setUrl(e.target.value);
   }
-  const newCardUrlRef = useRef();
   function handleSubmit(e) {
     e.preventDefault();
     props.onAddPlace({
@@ -23,11 +21,6 @@ function AddPlacePopup(props) {
       })
     })
   }
-
-  // useEffect(() => {
-  //   setName('');
-  //   setUrl('');
-  // }, [props.isOpen])
   
   return (
     <PopupWithForm onClose={props.onClose} name="card" title="Новое место" isOpen={props.isOpen} buttonText="Создать" onSubmit={handleSubmit}>
@@ -37,7 +30,7 @@ function AddPlacePopup(props) {
           <span className="popup__span-error inputTitle-error"></span>
         </div>
         <div className="popup__field">
-          <input className="popup__occupation popup__input" ref={newCardUrlRef} value={url} onChange={handleChangeUrl} type="url" name="link" id="inpitLink" placeholder="Ссылка на картинку" required />
+          <input className="popup__occupation popup__input" value={url} onChange={handleChangeUrl} type="url" name="link" id="inpitLink" placeholder="Ссылка на картинку" required />
           <span className="popup__span-error inpitLink-error"></span>
         </div>
       </>
