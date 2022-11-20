@@ -4,4 +4,4 @@
 
 *Планы:* допилить проект в следущих спринтах(переделать под реакт весь интерактив)
 
-[Сылка на проект](https://destol94.github.io/mesto-react/)
+[Сылка на проект](https://destol94.github.io/react-mesto-auth/)
