@@ -85,7 +85,7 @@ class Api {
   }
 }
 const api = new Api({
-  baseUrl: 'https://project-mesto.nomoredomains.club',
+  baseUrl: 'project-mesto.nomoredomains.club',
   headers: {
     authorization: "5aadda0f-b2b3-4db2-8e38-f46c0ff389a4",
     "Content-Type": "application/json",
