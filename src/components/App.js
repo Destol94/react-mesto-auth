@@ -77,7 +77,6 @@ function App() {
     catch { }
     finally {
       handleInfoTollTipClick();
-      // setTextErrorRegistration('');
     }
   }, [])
 

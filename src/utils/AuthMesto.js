@@ -1,4 +1,4 @@
-const BASE_URL = 'https://auth.nomoreparties.co';
+const BASE_URL = 'http://localhost:3000';
 
 export const authorization = async (email, password) => {
   const res = await fetch(`${BASE_URL}/signin`, {
