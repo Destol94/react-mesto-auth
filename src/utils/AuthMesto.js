@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://api.project-mesto.nomoredomains.club';
 
 export const authorization = async (email, password) => {
   const res = await fetch(`${BASE_URL}/signin`, {
