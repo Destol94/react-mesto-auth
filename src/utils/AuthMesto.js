@@ -34,7 +34,7 @@ export const tokenCheck = async (JWT) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${JWT}`
+      "Authorization": `${JWT}`
     }
   })
   return checkResposne(res);

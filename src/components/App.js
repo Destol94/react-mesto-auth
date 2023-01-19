@@ -28,21 +28,21 @@ function App() {
   const [dataUser, setDataUser] = useState('');
   const [textErrorRegistration, setTextErrorRegistration] = useState('');
 
-  const cbTokenCheck = useCallback(async () => {
-    try {
-      const jwt = localStorage.getItem('jwt');
-      if (!jwt) {
-        throw new Error('нет токена в кеше');
-      }
-      const cbToken = await tokenCheck(jwt);
-      if (!cbToken) {
-        throw new Error('токен не соответсвует пользовалетю');
-      }
-      setLoggedIn(true);
-      setDataUser(cbToken.data.email);
-    }
-    catch { };
-  }, []);
+  // const cbTokenCheck = useCallback(async () => {
+  //   try {
+  //     const jwt = localStorage.getItem('jwt');
+  //     if (!jwt) {
+  //       throw new Error('нет токена в кеше');
+  //     }
+  //     const cbToken = await tokenCheck(jwt);
+  //     if (!cbToken) {
+  //       throw new Error('токен не соответсвует пользовалетю');
+  //     }
+  //     setLoggedIn(true);
+  //     setDataUser(cbToken.data.email);
+  //   }
+  //   catch { };
+  // }, []);
 
   const cbAutorization = async (userName, password) => {
     try {
@@ -65,7 +65,6 @@ function App() {
     try {
       const data = await registration(userName, password);
       setTextErrorRegistration(data);
-      console.log(data);
       if (!data) {
         throw new Error('ошибка регистрации');
       }
@@ -112,16 +111,12 @@ function App() {
       if (user) {
         localStorage.setItem('jwt', token);
         setDataUser(user);
+        // setCurrentUser(user);
+
+        console.log(user);
         setLoggedIn(true);
       }
-
-      // localStorage.setItem('curentEmail', userName);
-      // setDataUser(userName);
-
-    }
-  }, [loggedIn]);
-
-  useEffect(() => {
+    };
     if (loggedIn) {
       api.getInitialCards()
         .then((res) => {
@@ -136,11 +131,44 @@ function App() {
           console.log(error)
         })
     }
-  }, [loggedIn])
+  }, [loggedIn]);
 
-  useEffect(() => {
-    cbTokenCheck();
-  }, [cbTokenCheck]);
+  // useEffect(() => async () => {
+  //   try {
+  //     const jwt = localStorage.getItem('jwt');
+  //     if (!jwt) {
+  //       throw new Error('нет токена в кеше');
+  //     }
+  //     const cbToken = await tokenCheck(jwt);
+  //     if (!cbToken) {
+  //       throw new Error('токен не соответсвует пользовалетю');
+  //     }
+  //     setLoggedIn(true);
+  //     setDataUser(cbToken.data.email);
+  //   }
+  //   catch { };
+  // }, [loggedIn]);
+
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     api.getInitialCards()
+  //       .then((res) => {
+  //         setCards(res.reverse());
+  //       })
+  //       .catch(error => console.log(error));
+  //     api.getUserInfo()
+  //       .then((res) => {
+  //         setCurrentUser(res);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error)
+  //       })
+  //   }
+  // }, [loggedIn])
+
+  // useEffect(() => {
+  //   cbTokenCheck();
+  // }, [cbTokenCheck]);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
