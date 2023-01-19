@@ -7,7 +7,7 @@ function Header(props) {
       <img src={logo} alt="Логотип страницы" className="header__logo" />
       {props.loggedIn ?
         <>
-          <p className="header__user-email" >{props.dataUser}</p>
+          <p className="header__user-email" >{localStorage.getItem('curentEmail')}</p>
           <button className="header__link header__link_login" onClick={props.onLogOut}>{props.text}</button>
         </>
         :

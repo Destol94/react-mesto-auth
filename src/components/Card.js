@@ -5,6 +5,7 @@ import trashCan from '../images/trashcan.svg';
 
 function Card(props) {
   const currentUser = useContext(CurrentUserContext);
+  // debugger;
   const isOwn = props.card.owner._id === currentUser._id;
   const cardDeleteBtnClassName = (`element__trashcan button ${isOwn ? 'element__trashcan_visible' : 'element__trashcan_hidden'}`);
 

@@ -44,20 +44,21 @@ function App() {
     catch { };
   }, []);
 
-  const cbAutorization = useCallback(async (userName, password) => {
+  const cbAutorization = async (userName, password) => {
     try {
       const jwt = await authorization(userName, password);
       if (!jwt) {
         throw new Error('ошибка входа');
       }
       if (jwt.token) {
-        setLoggedIn(true);
         localStorage.setItem('jwt', jwt.token);
+        localStorage.setItem('curentEmail', userName);
         setDataUser(userName);
+        setLoggedIn(true);
       }
     }
     catch (error) { console.log(error) }
-  }, [])
+  }
 
 
   const cbRegistration = useCallback(async (userName, password) => {
@@ -81,14 +82,14 @@ function App() {
   }, [])
 
   const cbLogOut = useCallback(() => {
-    localStorage.removeItem('jwt');
     setLoggedIn(false);
+    localStorage.clear();
     setDataUser('');
   }, []);
 
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => { return i._id === currentUser._id });
 
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
@@ -103,24 +104,38 @@ function App() {
       })
       .catch(error => console.log(error));
   }
-  useEffect(() => {
-    api.getInitialCards()
-      .then((res) => {
-        setCards(res);
-      })
-      .catch(error => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('jwt');
+  //   if (token) {
+  //     const user = tokenCheck(token);
+  //     if (user) {
+  //       localStorage.setItem('jwt', token);
+  //       setDataUser(user);
+  //       setLoggedIn(true);
+  //     }
+      
+  //     // localStorage.setItem('curentEmail', userName);
+  //     // setDataUser(userName);
+      
+  //   }
+  // }, [loggedIn]);
 
-
   useEffect(() => {
-    api.getUserInfo()
-      .then((res) => {
-        setCurrentUser(res);
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
+    if (loggedIn) {
+      api.getInitialCards()
+        .then((res) => {
+          setCards(res.reverse());
+        })
+        .catch(error => console.log(error));
+      api.getUserInfo()
+        .then((res) => {
+          setCurrentUser(res);
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }, [loggedIn])
 
   useEffect(() => {
     cbTokenCheck();
