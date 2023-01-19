@@ -85,6 +85,7 @@ function App() {
     setLoggedIn(false);
     localStorage.clear();
     setDataUser('');
+    // setCurrentUser([]);
   }, []);
 
 
@@ -104,21 +105,21 @@ function App() {
       })
       .catch(error => console.log(error));
   }
-  // useEffect(() => {
-  //   const token = localStorage.getItem('jwt');
-  //   if (token) {
-  //     const user = tokenCheck(token);
-  //     if (user) {
-  //       localStorage.setItem('jwt', token);
-  //       setDataUser(user);
-  //       setLoggedIn(true);
-  //     }
-      
-  //     // localStorage.setItem('curentEmail', userName);
-  //     // setDataUser(userName);
-      
-  //   }
-  // }, [loggedIn]);
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      const user = tokenCheck(token);
+      if (user) {
+        localStorage.setItem('jwt', token);
+        setDataUser(user);
+        setLoggedIn(true);
+      }
+
+      // localStorage.setItem('curentEmail', userName);
+      // setDataUser(userName);
+
+    }
+  }, [loggedIn]);
 
   useEffect(() => {
     if (loggedIn) {
