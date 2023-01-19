@@ -87,7 +87,7 @@ class Api {
 const api = new Api({
   baseUrl: 'https://api.project-mesto.nomoredomains.club',
   headers: {
-    "Origin": "https://api.project-mesto.nomoredomains.club",
+    "origin": "https://api.project-mesto.nomoredomains.club",
     "Authorization": localStorage.getItem('jwt'),
     "Content-Type": "application/json",
   }
