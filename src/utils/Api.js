@@ -65,14 +65,6 @@ class Api {
     })
       .then(res => { return this._getResponseDate(res) })
   }
-  // addLike(id) {
-  //   return fetch(`${this._address}/cards/${id}/likes`, {
-  //     method: "PUT",
-  //     credentials: 'include',
-  //     headers: this._headers
-  //   })
-  //     .then(res => { return this._getResponseDate(res) })
-  // }
   deleteLike(id) {
     return fetch(`${this._address}/cards/${id}/likes`, {
       method: "DELETE",
@@ -96,7 +88,6 @@ class Api {
 const api = new Api({
   baseUrl: 'https://api.project-mesto.nomoredomains.club',
   headers: {
-    // "Authorization": localStorage.getItem('jwt'),
     "Content-Type": "application/json",
   }
 });
