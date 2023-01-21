@@ -12,6 +12,7 @@ class Api {
   getUserInfo() {
     return fetch(`${this._address}/users/me`, {
       method: "GET",
+      credentials: 'include',
       headers: this._headers
     })
       .then(res => { return this._getResponseDate(res) })
@@ -19,6 +20,7 @@ class Api {
   patchUserInfo(inputValue, aboutValue) {
     return fetch(`${this._address}/users/me`, {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: `${inputValue}`,
@@ -30,6 +32,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._address}/cards`, {
       method: "GET",
+      credentials: 'include',
       headers: this._headers
     })
       .then(res => { return this._getResponseDate(res) })
@@ -37,6 +40,7 @@ class Api {
   patchCard(nameCard, linkCard) {
     return fetch(`${this._address}/cards`, {
       method: "POST",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: `${nameCard}`,
@@ -48,6 +52,7 @@ class Api {
   deleteCard(id) {
     return fetch(`${this._address}/cards/${id}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: this._headers
     })
       .then(res => { return this._getResponseDate(res) })
@@ -55,20 +60,23 @@ class Api {
   changeLikeCardStatus(id, isLiked) {
     return fetch(`${this._address}/cards/${id}/likes`, {
       method: isLiked ? "PUT" : "DELETE",
+      credentials: 'include',
       headers: this._headers
     })
       .then(res => { return this._getResponseDate(res) })
   }
-  addLike(id) {
-    return fetch(`${this._address}/cards/${id}/likes`, {
-      method: "PUT",
-      headers: this._headers
-    })
-      .then(res => { return this._getResponseDate(res) })
-  }
+  // addLike(id) {
+  //   return fetch(`${this._address}/cards/${id}/likes`, {
+  //     method: "PUT",
+  //     credentials: 'include',
+  //     headers: this._headers
+  //   })
+  //     .then(res => { return this._getResponseDate(res) })
+  // }
   deleteLike(id) {
     return fetch(`${this._address}/cards/${id}/likes`, {
       method: "DELETE",
+      credentials: 'include',
       headers: this._headers
     })
       .then(res => { return this._getResponseDate(res) })
@@ -76,6 +84,7 @@ class Api {
   patchAvatar(inputValue) {
     return fetch(`${this._address}/users/me/avatar`, {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         avatar: `${inputValue}`
@@ -87,8 +96,7 @@ class Api {
 const api = new Api({
   baseUrl: 'https://api.project-mesto.nomoredomains.club',
   headers: {
-    "origin": "https://api.project-mesto.nomoredomains.club",
-    "Authorization": localStorage.getItem('jwt'),
+    // "Authorization": localStorage.getItem('jwt'),
     "Content-Type": "application/json",
   }
 });

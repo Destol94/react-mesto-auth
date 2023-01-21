@@ -105,18 +105,18 @@ function App() {
       .catch(error => console.log(error));
   }
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      const user = tokenCheck(token);
-      if (user) {
-        localStorage.setItem('jwt', token);
-        setDataUser(user);
-        // setCurrentUser(user);
+    // const token = localStorage.getItem('jwt');
+    // if (token) {
+    //   const user = tokenCheck(token);
+    //   if (user) {
+    //     localStorage.setItem('jwt', token);
+    //     setDataUser(user);
+    //     // setCurrentUser(user);
 
-        console.log(user);
-        setLoggedIn(true);
-      }
-    };
+    //     console.log(user);
+    //     setLoggedIn(true);
+    //   }
+    // };
     if (loggedIn) {
       api.getInitialCards()
         .then((res) => {
